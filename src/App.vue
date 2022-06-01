@@ -13,6 +13,22 @@ import axios from 'axios'
 
 Chart.register(ArcElement);
 
+function getChartData() {
+      console.log("called");
+      axios.get("http://localhost:8081/chart-data")
+      .then(function(response){
+      console.log(response);
+  })
+}
+
+
+document.onreadystatechange = () => {
+  if (document.readyState == "complete") {
+    console.log('Page completed with image and files!')
+    getChartData();
+  }
+}
+
 export default {
   components: { Doughnut },
   data() {
@@ -31,19 +47,7 @@ export default {
             data: [1, 10, 5]
           }
         ]
-      },
-      methods: {
-        getChartData: function() {
-          axios.get("localhost:8081/chart-data")
-          .then(function(response){
-          console.log(response);
-          this.data = response.data;
-          })
-        }
-      },
-      beforeMount() {
-        this.getChartData()
-      }
+      }     
     }
   }
 }
