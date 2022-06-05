@@ -1,5 +1,6 @@
 <template>
   <Doughnut :chart-data="chartData" />
+  <!-- <mycomponent v-if="data" :data="data"></mycomponent> -->
 </template>
 
 <script>
@@ -13,42 +14,45 @@ import axios from 'axios'
 
 Chart.register(ArcElement);
 
-function getChartData() {
-      console.log("called");
-      axios.get("http://localhost:8081/chart-data")
-      .then(function(response){
-      console.log(response);
-  })
-}
-
-
-document.onreadystatechange = () => {
-  if (document.readyState == "complete") {
-    console.log('Page completed with image and files!')
-    getChartData();
-  }
-}
-
 export default {
   components: { Doughnut },
   data() {
     return {
       chartOptions: {
-        hoverBorderWidth: 20
+        hoverBorderWidth: 10
       },
       chartData: {
         hoverBackgroundColor: "red",
-        hoverBorderWidth: 10,
-        labels: ["Green", "Red", "Blue"],
+        hoverBorderWidth: 5,
+        labels: [],
         datasets: [
           {
             label: "Data One",
-            backgroundColor: ["#41B883", "#E46651", "#00D8FF"],
-            data: [1, 10, 5]
+            backgroundColor: ["#41B883", "#E46651"],
+            data: [1, 1]
           }
         ]
-      }     
+      },
     }
+  },
+  methods: {
+    getChartData(){
+      setInterval(() => {
+       axios.get("http://localhost:8081/chart-data")
+       .then((response) => {
+         this.chartData.datasets[0].data = [];
+         this.chartData.labels = [];
+          for (var label in response.data.data) {
+            this.chartData.labels.push(label);
+            this.chartData.datasets[0].data.push(response.data.data[label]);
+          }
+      })
+    }, 2000);
+      
+    },
+  },
+  mounted() {
+    this.getChartData();
   }
 }
 </script>
