@@ -14,16 +14,21 @@ export const store = new Vuex.Store({
     mutations: {},
     actions: {
         getChartData: function (){
-            
+            setInterval(() => {
              axios.get("http://localhost:8081/chart-data")
              .then((response) => {
+            //   console.log(This);
+            //   This.chartData.datasets[0].data = [];
+            //   This.chartData.labels = [];
                 this.pieLabels = [];
                 this.pieData = [];
                 for (var label in response.data.data) {
                     this.pieLabels.push(label);
                     this.pieData.push(response.data.data[label]);
                 }
-            })            
+            })
+          }, 2000);
+            
         }
     }
 })

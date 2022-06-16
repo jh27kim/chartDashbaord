@@ -1,5 +1,5 @@
 <template>
-  <PieChart></PieChart>
+  <router-view></router-view>
 </template>
 
 <script>
@@ -7,10 +7,10 @@
 // import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 
 // ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
-import PieChart from './components/PieChart.vue';
+//import PieChart from './components/PieChart.vue';
 
 export default {
-  components: { PieChart },
+  components: {  },
 }
 
 </script>
