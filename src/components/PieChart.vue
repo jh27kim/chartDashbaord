@@ -30,7 +30,7 @@ export default {
           {
             label: "Data One",
             backgroundColor: ["#41B883", "#E46651"],
-            data: [0, 0]
+            data: [1, 3]
           }
         ]
       },
