@@ -1,18 +1,16 @@
 <template>
-<div>
+<div id="app">
+  <HeaderNavBar/>
   <router-view></router-view>
 </div>
 </template>
 
 <script>
-// DataPage.vue
-// import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-
-// ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
-//import PieChart from './components/PieChart.vue';
-
-export default {
-  components: {  },
-}
-
+  import HeaderNavBar from "./components/layout/HeaderNavBar"
+  export default {
+    name: "app", 
+    components: {
+      HeaderNavBar,
+    }
+  }
 </script>

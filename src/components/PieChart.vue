@@ -1,5 +1,10 @@
 <template>
+  <div>
     <Doughnut :chartData="chartData"></Doughnut>
+  </div>
+  <div>
+    <button type="button" class="btn btn-info" @click="GetChartForm">New Chart</button>
+  </div>
 </template>
 
 <script>
@@ -37,6 +42,10 @@ export default {
     }
   },
   methods: {
+    GetChartForm: function() {
+      this.$router.push('/chartform')
+    },
+
     GetChartData: function (){
         this.$store.dispatch('getChartData');
         this.chartData.datasets[0].data = this.$store.pieData;

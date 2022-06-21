@@ -1,7 +1,8 @@
-import Login from "./components/LoginPage";
+import Login from "./components/LoginPage"
 import PieChart from "./components/PieChart"
 import Home from "./components/HomePage"
-import Signup from "./components/SignupPage"
+import About from "./components/AboutPage"
+import ChartForm from "./components/ChartFormPage"
 
 import { createWebHistory, createRouter } from 'vue-router';
 
@@ -18,14 +19,19 @@ const routes = [
       component: Login,
     },
     {
-      path: '/signup',
-      name: 'Signup',
-      component: Signup,
+      path: '/about',
+      name: 'About',
+      component: About,
     },
     {
       path: '/dashboard',
       name: 'Dashboard',
       component: PieChart,
+    },
+    {
+      path: '/chartform',
+      name: 'ChartForm',
+      component: ChartForm,
     },
   ];
 

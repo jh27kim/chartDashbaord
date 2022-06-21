@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+// TODO 함수는 여기로
+
 function getChartData(This){
      axios.get("http://localhost:8081/chart-data")
      .then((response) => {
