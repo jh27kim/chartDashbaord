@@ -34,12 +34,13 @@
             <div class="form-text">Select Period to Extract Data</div>
         </div>
 
-        <button type="submit" class="btn btn-primary" @click="checkData">Submit</button>
+        <button type="submit" class="btn btn-primary" @click="AddChart">Submit</button>
     </form>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 
 export default {
     data() {
@@ -51,11 +52,12 @@ export default {
     }
   },
   methods: {
-    checkData: function() {
+    AddChart: function() {
       console.log(this.keyword);
-      console.log(this.date);
+      // console.log(this.date);
       console.log(this.period);
       console.log(this.charttype);
+      axios.get("http://localhost:8081/addchart")
     },
   }
 };

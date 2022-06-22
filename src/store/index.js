@@ -15,7 +15,7 @@ export const store = new Vuex.Store({
     actions: {
         getChartData: function (){
             setInterval(() => {
-             axios.get("http://localhost:8081/chart-data")
+             axios.get("http://localhost:8082/chart-data")
              .then((response) => {
                 console.log(response);
             //   console.log(This);

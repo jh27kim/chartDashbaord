@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Doughnut :chartData="chartData"></Doughnut>
+    <Doughnut :chartData="chartData"></Doughnut> 
   </div>
   <div>
     <button type="button" class="btn btn-info" @click="GetChartForm">New Chart</button>
@@ -10,6 +10,7 @@
 <script>
 
 import { Doughnut } from 'vue-chartjs'
+import axios from 'axios';
 
 // DataPage.vue
 // import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
@@ -24,6 +25,7 @@ export default {
   components: { Doughnut },
   data() {
     return {
+      keyword: "mama",
       chartOptions: {
         hoverBorderWidth: 10
       },
@@ -47,10 +49,27 @@ export default {
     },
 
     GetChartData: function (){
-        this.$store.dispatch('getChartData');
-        this.chartData.datasets[0].data = this.$store.pieData;
-        this.chartData.labels = this.$store.pieLabels;
-    },
+          setInterval(() => {
+            console.log(this.keyword);
+             axios.get("http://localhost:8082/chart-data/" + this.keyword)
+             .then((response) => {
+
+                this.pieLabels = [];
+                this.pieData = [];
+                for (var label in response.data.data) {
+                    this.pieLabels.push(label);
+                    this.pieData.push(response.data.data[label]);
+                }
+
+            })
+            .catch((error) => {
+                console.log(error);
+                this.pieData = [1, 29];
+              });
+          }, 2000);
+            
+        }
+    ,
   },
 
   mounted() {
