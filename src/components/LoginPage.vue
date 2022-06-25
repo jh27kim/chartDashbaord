@@ -60,24 +60,33 @@ export default {
    
    methods: {
       doLogin() {
-         axios.post("http://localhost:8081/web/login/", null, {params : {
-            email: this.emailLogin,
-            password : this.passwordLogin
-         }})
-             .then((response) => {
-                console.log(response);
-             }) 
+         const params = new URLSearchParams();
+         params.append('email', this.emailLogin);
+         params.append('password', this.passwordLogin);
+
+         axios.post('http://localhost:8081/web/login/', params)
+         .then((response) => {
+            console.log(response);
+         })
+         .catch((error) => {
+            // alert("null");
+            console.log(error);
+         }); 
       },
       
       doRegister() {
-        console.log("sent");
-         axios.post("http://localhost:8081/web/register/", null, {params : {
-            email: this.emailReg,
-            password : this.passwordReg
-         }})
-             .then((response) => {
-                console.log(response);
-        }) 
+         const params = new URLSearchParams();
+         params.append('email', this.emailReg);
+         params.append('password', this.passwordReg);
+
+         axios.post('http://localhost:8081/web/register/', params)
+         .then((response) => {
+            console.log(response);
+         })
+         .catch((error) => {
+            // alert("null");
+            console.log(error);
+         }); 
       }
    }
 }

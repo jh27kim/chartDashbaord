@@ -18,9 +18,7 @@
         </div>
 
         <div>
-            <label for="example-datepicker">Choose a date</label>
-            <b-form-datepicker id="example-datepicker" v-model="value" class="mb-2"></b-form-datepicker>
-            <p>Date: '{{ date }}'</p>
+            <Datepicker v-model="date"></Datepicker>
         </div>
 
         <div class="mb-3">
@@ -40,24 +38,40 @@
 </template>
 
 <script>
+import Datepicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 import axios from 'axios';
 
 export default {
+    components: { Datepicker },
     data() {
     return {
       keyword: "",
-      date: "",
+      date: null,
       period: "",
       charttype: "",
     }
   },
   methods: {
     AddChart: function() {
-      console.log(this.keyword);
-      // console.log(this.date);
-      console.log(this.period);
-      console.log(this.charttype);
-      axios.get("http://localhost:8081/addchart")
+      if (this.date < Date.now() ){
+        alert("Please Check End Date")
+        return;
+      }
+      const params = new URLSearchParams();
+      params.append('keyword', this.keyword);
+      params.append('date', this.date);
+      params.append('period', this.period);
+      params.append('type', this.charttype);
+      axios.post('http://localhost:8081/add-chart/', params)
+      .then((response) => {
+          console.log(response);
+        })
+      .catch((error) => {
+          // alert("null");
+          console.log(error);
+      });      
+      
     },
   }
 };
