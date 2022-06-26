@@ -1,5 +1,7 @@
 # chartboard
 
+## [For system architecture, please check Backend repo](https://github.com/jh27kim/producer)
+
 ## Project setup
 ```
 npm install
