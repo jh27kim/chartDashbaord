@@ -63,7 +63,7 @@ export default {
       params.append('date', this.date);
       params.append('period', this.period);
       params.append('type', this.charttype);
-      axios.post('http://localhost:8081/add-chart/', params)
+      axios.post('http://localhost:8081/chart/', params)
       .then((response) => {
           console.log(response);
         })
