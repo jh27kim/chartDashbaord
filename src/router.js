@@ -3,6 +3,7 @@ import PieChart from "./components/PieChart"
 import Home from "./components/HomePage"
 import About from "./components/AboutPage"
 import ChartForm from "./components/ChartFormPage"
+import PieChartTemp from "./components/PieChartTemp"
 
 import { createWebHistory, createRouter } from 'vue-router';
 
@@ -32,6 +33,11 @@ const routes = [
       path: '/chartform',
       name: 'ChartForm',
       component: ChartForm,
+    },
+    {
+      path: '/testchart',
+      name: 'Testchart',
+      component: PieChartTemp,
     },
   ];
 
