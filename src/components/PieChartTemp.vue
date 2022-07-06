@@ -43,16 +43,6 @@ export default {
       this.$router.push('/chartform');
     },
 
-    GetChartMetada: function (userId) {
-      axios
-        .get('http://localhost:8082/chart/')
-        .then((response) => {})
-        .catch((error) => {
-          console.log(error);
-        });
-      return;
-    },
-
     GetChartData: function () {
       setInterval(() => {
         console.log(this.keyword);
