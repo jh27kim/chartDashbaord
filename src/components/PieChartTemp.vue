@@ -1,7 +1,6 @@
 <template>
     <div>
         <Doughnut :chartData="chartData"></Doughnut>
-        {{period}}
     </div>
 </template>
 
@@ -43,7 +42,7 @@ export default {
       this.$router.push('/chartform')
     },
 
-    GetChartData: function (){
+    getChartData: function (){
           setInterval(() => {
              axios.get("http://localhost:8082/chart-data/" + this.keyword)
              .then((response) => {
@@ -60,7 +59,7 @@ export default {
   },
 
   mounted() {
-    setInterval(() => this.GetChartData(), this.period);
+    this.getChartData();
   }
 }
 </script>
