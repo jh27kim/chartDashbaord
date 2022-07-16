@@ -59,7 +59,7 @@ export default {
   },
 
   mounted() {
-    this.getChartData();
+    // this.getChartData();
   }
 }
 </script>

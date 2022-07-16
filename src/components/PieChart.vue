@@ -17,9 +17,10 @@ export default {
   components: { PieChartTempVue },
   data() {
     return {
-      chartinfo: [{chartId: 1, type:"pie", chartdata: [1, 4], period: [3000], keyword: "trump", enddate: "20220701"},
-      {chartId: 2, type:"pie", chartdata: [5, 2], period: [5000000], keyword: "biden", enddate: "20220702"},
-      {chartId: 3, type:"pie", chartdata: [7, 9], period: [9000000], keyword: "obama", enddate: "20220703"}]
+      chartinfo: []
+      // chartinfo: [{chartId: 1, type:"pie", chartdata: [1, 4], period: [3000], keyword: "trump", enddate: "20220701"},
+      // {chartId: 2, type:"pie", chartdata: [5, 2], period: [5000000], keyword: "biden", enddate: "20220702"},
+      // {chartId: 3, type:"pie", chartdata: [7, 9], period: [9000000], keyword: "obama", enddate: "20220703"}]
       }
     },
 
@@ -29,10 +30,19 @@ export default {
     },
 
     GetChartMetadata: function() {
-      axios.get("http://localhost:8081/chart/")
-      // Get chart metadata from server
+      axios.get("http://localhost:8081/chart/load/")
+        .then((response) => {
+          this.chartinfo = response.data
+          console.log(this.chartinfo)
+                // this.chartData.datasets[0].data = this.data
+            })
+      
       return;
     }
+  },
+
+  mounted() {
+    this.GetChartMetadata();
   }
 }
 </script>
