@@ -32,6 +32,8 @@ export default {
     },
 
     GetChartMetadata: function() {
+      axios.defaults.headers.common['Access-Token'] = window.localStorage.getItem("Access-Token");
+
       axios.get("http://localhost:8081/chart/load/")
         .then((response) => {
           this.chartinfo = response.data

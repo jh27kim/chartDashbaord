@@ -15,7 +15,7 @@
               v-bind:class="{ error: emptyFields }"
             >
               <h1>Sign In</h1>
-              <form class="form-group">
+              <form class="form-group" @submit.prevent="doLogin">
                 <input
                   v-model.trim="emailLogin"
                   type="email"
@@ -195,12 +195,12 @@ export default {
       axios
         .post('http://localhost:8081/web/login/', params)
         .then((response) => {
-          document.cookie = `Acess-Token=${response.data['auth-token']}`;
-          document.cookie = `User-Email=${response.data['user-email']}`;
-          window.localStorage.setItem("Acess-Token", `${response.data['auth-token']}`);
-          window.localStorage.setItem("User-Email", `${response.data['user-email']}`);
-         //  axios.defaults.headers.common['Acess-Token'] = `${response.data['auth-token']}`;
           console.log(response);
+          window.localStorage.setItem("Access-Token", `${response.data['auth-token']}`);
+          window.localStorage.setItem("User-Email", `${response.data['user-email']}`);
+          axios.defaults.headers.common['Access-Token'] = response.data['user-email'];
+
+          this.$router.push('/');
         })
         .catch((error) => {
           // alert("null");

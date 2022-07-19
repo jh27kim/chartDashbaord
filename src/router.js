@@ -32,7 +32,6 @@ const routes = [
       name: 'Login',
       component: Login,
       beforeEnter: beforeAuth(false),
-
     },
     {
       path: '/about',
@@ -43,13 +42,13 @@ const routes = [
       path: '/dashboard',
       name: 'Dashboard',
       component: PieChart,
-      beforeEnter: beforeAuth(true),
+      beforeEnter: beforeAuth(false),
     },
     {
       path: '/chartform',
       name: 'ChartForm',
       component: ChartForm,
-      beforeEnter: beforeAuth(true),
+      beforeEnter: beforeAuth(false),
     },
     {
       path: '/testchart',
