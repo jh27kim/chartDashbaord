@@ -1,11 +1,13 @@
-<template> 
+<template>
   <div v-for="chart in chartinfo" :key="chart">
     <PieChartTempVue :chartinfo="chart"></PieChartTempVue>
     <!-- {{ index }} {{ chart.chartId }} {{ chart.type }} {{ chart.chartdata }} {{ chart.period }} {{ chart.keyword }} {{ chart.enddate }} -->
   </div>
 
   <div>
-    <button type="button" class="btn btn-info" @click="GetChartForm">New Chart</button>
+    <button type="button" class="btn btn-info" @click="GetChartForm">
+      New Chart
+    </button>
   </div>
 </template>
 
@@ -25,8 +27,8 @@ export default {
     },
 
   methods: {
-    GetChartForm: function() {
-      this.$router.push('/chartform')
+    GetChartForm: function () {
+      this.$router.push('/chartform');
     },
 
     GetChartMetadata: function() {
@@ -47,8 +49,7 @@ export default {
 }
 </script>
 
- 
-  <!-- //   GetChartData: function (){
+<!-- //   GetChartData: function (){
   //         setInterval(() => {
   //            axios.get("http://localhost:8082/chart-data/" + this.keyword)
   //            .then((response) => {
