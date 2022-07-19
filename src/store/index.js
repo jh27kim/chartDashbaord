@@ -3,7 +3,7 @@ import axios from 'axios';
 // prevent reset when refresh
 import createPersistedState from 'vuex-persistedstate';
 
-import authModule from './modules/auth/index.js';
+//import authModule from './modules/auth/index.js';
 // Vue.use(Vuex);
 // import { createStore } from 'vuex';
 // const store = createStore({});

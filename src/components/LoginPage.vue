@@ -183,7 +183,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['getAccessToken', 'getUserEmail', 'getUserName', 'getRole']),
+   //  ...mapGetters(['getAccessToken', 'getUserEmail', 'getUserName', 'getRole']),
   },
 
   methods: {
@@ -195,10 +195,12 @@ export default {
       axios
         .post('http://localhost:8081/web/login/', params)
         .then((response) => {
+          document.cookie = `Acess-Token=${response.data['auth-token']}`;
+          document.cookie = `User-Email=${response.data['user-email']}`;
+          window.localStorage.setItem("Acess-Token", `${response.data['auth-token']}`);
+          window.localStorage.setItem("User-Email", `${response.data['user-email']}`);
+         //  axios.defaults.headers.common['Acess-Token'] = `${response.data['auth-token']}`;
           console.log(response);
-          axios.defaults.headers.common[
-            'auth-token'
-          ] = `${response.data['auth-token']}`;
         })
         .catch((error) => {
           // alert("null");
@@ -227,7 +229,7 @@ export default {
       // LOGIN 액션 실행
       // 서버와 통신(axios)을 해 토큰값을 얻어야 하므로 Actions를 호출.
       this.$store.dispatch('LOGIN', this.user);
-      console.log(this.$store.getters.getAccessToken);
+      //console.log(this.$store.getters.getAccessToken);
       // this.$emit('loginSuccess');
       this.user.email = '';
       this.user.password = '';
