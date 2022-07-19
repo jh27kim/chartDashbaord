@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <Doughnut :chartData="chartData"></Doughnut>
-    {{ period }}
-  </div>
+
+    <div>
+        <Doughnut :chartData="chartData"></Doughnut>
+    </div>
 </template>
 
 <script>
@@ -39,23 +39,24 @@ export default {
     GetChartForm: function () {
       this.$router.push('/chartform');
     },
-    GetChartData: function () {
-      setInterval(() => {
-        axios
-          .get('http://localhost:8082/chart-data/' + this.keyword)
-          .then((response) => {
-            console.log(response);
-            this.chartData.datasets[0].data = this.data;
-          })
-          .catch((error) => {
-            console.log(error);
-            // this.pieData = [1, 29];
-          });
-      }, this.period);
+    getChartData: function (){
+          setInterval(() => {
+             axios.get("http://localhost:8082/chart-data/" + this.keyword)
+             .then((response) => {
+                console.log(response);
+                this.chartData.datasets[0].data = this.data
+            })
+            .catch((error) => {
+                console.log(error);
+                // this.pieData = [1, 29];
+              });
+          }, this.period);
+            
     },
   },
   mounted() {
-    setInterval(() => this.GetChartData(), this.period);
-  },
-};
+
+    this.getChartData();
+  }
+}
 </script>
