@@ -3,15 +3,14 @@ import PieChart from "./components/PieChart"
 import Home from "./components/HomePage"
 import About from "./components/AboutPage"
 import ChartForm from "./components/ChartFormPage"
-// import { useCookies } from "vue3-cookies";
-
+// import {computed} from 'vue';
 import { createWebHistory, createRouter } from 'vue-router';
+
 import store from '@/store';
 
-// const { cookies } = useCookies();
-
-// const isAuthenticated = false;
+console.log(store.state.isAuthenticated);
 const isAuthenticated = store.state.isAuthenticated;
+console.log(isAuthenticated);
 
 const beforeAuth = isAuth => (from, to, next) => {
   console.log(isAuthenticated);
@@ -44,14 +43,13 @@ const routes = [
       path: '/dashboard',
       name: 'Dashboard',
       component: PieChart,
-      beforeEnter: beforeAuth(true),
-
+      // beforeEnter: beforeAuth(true),
     },
     {
       path: '/chartform',
       name: 'ChartForm',
       component: ChartForm,
-      beforeEnter: beforeAuth(true),
+      // beforeEnter: beforeAuth(true),
     }
   ];
 

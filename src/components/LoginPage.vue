@@ -42,7 +42,7 @@
               placeholder="비밀번호"
               v-model.trim="user.password"
             /> -->
-                <input type="submit" class="btn btn-primary" @click="doLogin" />
+                <input type="submit" class="btn btn-primary"/>
                 <p>
                   Don't have an account?
                   <a
@@ -199,9 +199,9 @@ export default {
           console.log(response);
           window.localStorage.setItem("Access-Token", `${response.data['auth-token']}`);
           window.localStorage.setItem("User-Email", `${response.data['user-email']}`);
-          this.$router.push('/');
           store.commit("setAuth");
           console.log(store.state.isAuthenticated);
+
         })
         .catch((error) => {
           // alert("null");
@@ -223,26 +223,26 @@ export default {
           console.log(error);
         });
     },
-    login(event) {
-      console.log(this.user.email);
-      console.log(this.user.password);
-      event.preventDefault();
-      // LOGIN 액션 실행
-      // 서버와 통신(axios)을 해 토큰값을 얻어야 하므로 Actions를 호출.
-      this.$store.dispatch('LOGIN', this.user);
-      //console.log(this.$store.getters.getAccessToken);
-      // this.$emit('loginSuccess');
-      this.user.email = '';
-      this.user.password = '';
-    },
-    logout() {
-      this.$store.dispatch('LOGOUT');
-      axios.defaults.headers.common['auth-token'] = undefined;
-      //.then(() => this.$router.replace('/').catch(() => {}));
-      console.log(localStorage);
-      localStorage.clear;
-      console.log(localStorage);
-    },
+    // login(event) {
+    //   console.log(this.user.email);
+    //   console.log(this.user.password);
+    //   event.preventDefault();
+    //   // LOGIN 액션 실행
+    //   // 서버와 통신(axios)을 해 토큰값을 얻어야 하므로 Actions를 호출.
+    //   this.$store.dispatch('LOGIN', this.user);
+    //   //console.log(this.$store.getters.getAccessToken);
+    //   // this.$emit('loginSuccess');
+    //   this.user.email = '';
+    //   this.user.password = '';
+    // },
+    // logout() {
+    //   this.$store.dispatch('LOGOUT');
+    //   axios.defaults.headers.common['auth-token'] = undefined;
+    //   //.then(() => this.$router.replace('/').catch(() => {}));
+    //   console.log(localStorage);
+    //   localStorage.clear;
+    //   console.log(localStorage);
+    // },
   },
 };
 </script>
