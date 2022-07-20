@@ -71,6 +71,7 @@ export default {
       params.append('period', this.period);
       params.append('chartType', this.chartType);
 
+      axios.defaults.headers.common['Access-Token'] = window.localStorage.getItem("Access-Token");
       axios.post('http://localhost:8081/chart/', params)
       .then((response) => {
           console.log(response);

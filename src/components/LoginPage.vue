@@ -164,6 +164,7 @@
 </template>
 
 <script>
+import store from '@/store';
 import axios from 'axios';
 
 export default {
@@ -198,9 +199,9 @@ export default {
           console.log(response);
           window.localStorage.setItem("Access-Token", `${response.data['auth-token']}`);
           window.localStorage.setItem("User-Email", `${response.data['user-email']}`);
-          axios.defaults.headers.common['Access-Token'] = response.data['user-email'];
-
           this.$router.push('/');
+          store.commit("setAuth");
+          console.log(store.state.isAuthenticated);
         })
         .catch((error) => {
           // alert("null");
