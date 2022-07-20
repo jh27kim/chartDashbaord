@@ -165,7 +165,7 @@
 
 <script>
 import store from '@/store';
-import axios from 'axios';
+import axios from '../axios/axios'
 
 export default {
   data() {
@@ -199,9 +199,9 @@ export default {
           console.log(response);
           window.localStorage.setItem("Access-Token", `${response.data['auth-token']}`);
           window.localStorage.setItem("User-Email", `${response.data['user-email']}`);
-          store.commit("setAuth");
-          console.log(store.state.isAuthenticated);
-
+          store.commit("setAuth", true);
+          console.log(store.state.isAuthenticated); //true 바뀜
+          this.$router.push('/');          
         })
         .catch((error) => {
           // alert("null");

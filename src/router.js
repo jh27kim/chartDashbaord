@@ -8,14 +8,11 @@ import { createWebHistory, createRouter } from 'vue-router';
 
 import store from '@/store';
 
-console.log(store.state.isAuthenticated);
-const isAuthenticated = store.state.isAuthenticated;
-console.log(isAuthenticated);
-
 const beforeAuth = isAuth => (from, to, next) => {
-  console.log(isAuthenticated);
+  console.log(store.state.isAuthenticated); //다시 false로 바뀜
   console.log(isAuth);
-  if ((isAuthenticated && isAuth) || (!isAuthenticated && !isAuth)) {
+  console.log(store);
+  if ((store.state.isAuthenticated && isAuth) || (!store.state.isAuthenticated && !isAuth)) {
     return next()
   } else {
     next("/");  
@@ -43,13 +40,13 @@ const routes = [
       path: '/dashboard',
       name: 'Dashboard',
       component: PieChart,
-      // beforeEnter: beforeAuth(true),
+      beforeEnter: beforeAuth(true),
     },
     {
       path: '/chartform',
       name: 'ChartForm',
       component: ChartForm,
-      // beforeEnter: beforeAuth(true),
+      beforeEnter: beforeAuth(true),
     }
   ];
 

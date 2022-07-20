@@ -35,7 +35,7 @@
 <script>
 import Datepicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
-import axios from 'axios';
+import axios from '../axios/axios';
 // import { ref } from 'vue';
 
 export default {
@@ -71,7 +71,9 @@ export default {
       params.append('period', this.period);
       params.append('chartType', this.chartType);
 
-      axios.defaults.headers.common['Access-Token'] = window.localStorage.getItem("Access-Token");
+      // axios.defaults.headers.common['Access-Token'] = window.localStorage.getItem("Access-Token");
+
+
       axios.post('http://localhost:8081/chart/', params)
       .then((response) => {
           console.log(response);

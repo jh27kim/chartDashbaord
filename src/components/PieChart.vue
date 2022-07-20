@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
+import axios from '../axios/axios'
 import PieChartTempVue from './PieChartTemp.vue';
 
 export default {
@@ -32,7 +33,12 @@ export default {
     },
 
     GetChartMetadata: function() {
-      axios.get("http://localhost:8081/chart/load/")
+      const params = new URLSearchParams();
+      params.append('email', window.localStorage.getItem("User-Email"));
+      console.log(window.localStorage.getItem("User-Email"));
+      console.log(params);
+
+      axios.get("http://localhost:8081/chart/load/?email="+window.localStorage.getItem("User-Email"))
         .then((response) => {
           this.chartinfo = response.data
           console.log(this.chartinfo)

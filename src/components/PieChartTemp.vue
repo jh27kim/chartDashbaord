@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from '../axios/axios'
 import { Chart, ArcElement } from 'chart.js';
 import { Doughnut } from 'vue-chartjs';
 Chart.register(ArcElement);
