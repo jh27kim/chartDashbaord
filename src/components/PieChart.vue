@@ -37,7 +37,8 @@ export default {
       params.append('email', window.localStorage.getItem("User-Email"));
       console.log(window.localStorage.getItem("User-Email"));
       console.log(params);
-
+      
+      // 이거도 바꾸셈
       axios.get("http://localhost:8081/chart/load/?email="+window.localStorage.getItem("User-Email"))
         .then((response) => {
           this.chartinfo = response.data
