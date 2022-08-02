@@ -16,7 +16,7 @@ export default {
   data() {
     return {
       keyword: this.chartinfo.keyword,
-      period: this.chartinfo.period,
+      period: this.chartinfo.periodSec,
       chartOptions: {
         hoverBorderWidth: 5,
       },
@@ -28,7 +28,7 @@ export default {
           {
             label: 'Data One',
             backgroundColor: ['#41B883', '#E46651'],
-            data: [1, 1],
+            data: [0, 0, 0, 0, 0],
           },
         ],
       },
@@ -44,13 +44,17 @@ export default {
              axios.get("http://localhost:8082/chart-data/" + this.keyword)
              .then((response) => {
                 console.log(response);
-                this.chartData.datasets[0].data = this.data
+                this.chartData.labels = response.data[0].labelList
+                for (let i = 0; i < 5; i++) {
+                  this.chartData.datasets[0].data[i] += response.data[0].quantityList
+                }
+                // this.chartData.datasets[0].data = this.data
             })
             .catch((error) => {
                 console.log(error);
                 // this.pieData = [1, 29];
               });
-          }, this.period);
+          }, this.period*1000);
             
     },
   },
