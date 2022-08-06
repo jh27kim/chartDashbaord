@@ -17,6 +17,7 @@ export default {
     return {
       keyword: this.chartinfo.keyword,
       period: this.chartinfo.periodSec,
+      initData: this.chartinfo.chartdata,
       chartOptions: {
         hoverBorderWidth: 5,
       },
