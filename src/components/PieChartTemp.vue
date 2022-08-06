@@ -23,7 +23,7 @@ export default {
       chartData: {
         hoverBackgroundColor: 'red',
         hoverBorderWidth: 5,
-        labels: ['agree', 'disagree'],
+        labels: [],
         datasets: [
           {
             label: 'Data One',
@@ -46,6 +46,7 @@ export default {
                 console.log(response);
                 this.chartData.labels = response.data[0].labelList
                 for (let i = 0; i < 5; i++) {
+                  // TODO Increment data 
                   this.chartData.datasets[0].data[i] += response.data[0].quantityList
                 }
                 // this.chartData.datasets[0].data = this.data

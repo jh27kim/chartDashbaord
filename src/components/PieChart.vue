@@ -38,8 +38,7 @@ export default {
       console.log(window.localStorage.getItem("User-Email"));
       console.log(params);
       
-      // 이거도 바꾸셈
-      // Get Initial Data from BE
+      // TODO Get Initial Data from BE
       axios.get("http://localhost:8081/chart/load/?email="+window.localStorage.getItem("User-Email"))
         .then((response) => {
           this.chartinfo = response.data
