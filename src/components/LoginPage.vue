@@ -197,6 +197,11 @@ export default {
         .post('http://localhost:8081/web/login/', params)
         .then((response) => {
           console.log(response);
+          if (response.data.errorCode === "LOGIN_ERROR"){
+            console.log(response.data)
+            alert(response.data.errorMessage)
+            return
+          }
           window.localStorage.setItem("Access-Token", `${response.data['auth-token']}`);
           window.localStorage.setItem("User-Email", `${response.data['user-email']}`);
           store.commit("setAuth", true);
@@ -204,8 +209,7 @@ export default {
           this.$router.push('/');          
         })
         .catch((error) => {
-          // alert("null");
-          console.log(error);
+          alert(error.errorMessage);
         });
     },
 
