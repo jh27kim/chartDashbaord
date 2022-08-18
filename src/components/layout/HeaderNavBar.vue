@@ -20,6 +20,7 @@
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li><a class="dropdown-item" href="/login">Login</a></li>
               <li><a class="dropdown-item" href="/login">Sign up</a></li>
+              <li><a class="dropdown-item" href="/" @click="signout()">Sign out</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="/dashboard">My Dashboard</a></li>
             </ul>
@@ -36,3 +37,20 @@
     </div>
   </nav>
 </template>
+
+
+<script>
+import store from '@/store';
+
+
+export default {
+  data() {},
+  methods: {
+    signout() {
+      window.localStorage.removeItem("Access-Token");
+      store.commit("setAuth", false);
+    }
+  }
+}
+
+</script>
