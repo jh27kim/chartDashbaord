@@ -33,14 +33,11 @@ export default {
     },
 
     GetChartMetadata: function() {
-      const params = new URLSearchParams();
-      params.append('email', window.localStorage.getItem("User-Email"));
-      console.log(window.localStorage.getItem("User-Email"));
-      console.log(params);
+   
       
       // TODO Get Initial Data from BE 
       // ADD init data in DTO !!
-      axios.get("http://localhost:8081/chart/load/?email="+window.localStorage.getItem("User-Email"))
+      axios.get("http://localhost:8081/chart/load")
         .then((response) => {
           this.chartinfo = response.data
           console.log(this.chartinfo)
