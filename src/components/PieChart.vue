@@ -33,17 +33,28 @@ export default {
     },
 
     GetChartMetadata: function() {
-   
-      
-      // TODO Get Initial Data from BE 
+         // TODO Get Initial Data from BE 
       // ADD init data in DTO !!
       axios.get("http://localhost:8081/chart/load")
         .then((response) => {
-          this.chartinfo = response.data
-          console.log(this.chartinfo)
-                // this.chartData.datasets[0].data = this.data
-            })
-      
+          console.log(response)
+          if (response.data.errorCode === "TOKEN_REFRESH"){
+            console.log("TOKEN_REFRESH")
+            window.localStorage.setItem("Access-Token", response.data.errorMessage)
+            axios.get("http://localhost:8081/chart/load")
+            .then((response) => {
+              console.log("inner response")
+              console.log(response)
+              this.chartinfo = response.data
+              console.log(this.chartinfo)
+          })
+        }
+        else if(response.errorCode === "TOKEN_EXPIRED"){
+          window.localStorage.removeItem("Access-Token")
+          this.$router.push("/login")
+        }
+        this.chartinfo = response.data
+      })
       return;
     }
   },
