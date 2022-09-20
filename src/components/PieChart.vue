@@ -13,7 +13,8 @@
 
 <script>
 // import axios from 'axios';
-import axios from '../axios/axios'
+// import axios from '../axios/axios'
+import tokenAxios from '../axios/tokenAxios'
 import PieChartTempVue from './PieChartTemp.vue';
 
 export default {
@@ -35,26 +36,34 @@ export default {
     GetChartMetadata: function() {
          // TODO Get Initial Data from BE 
       // ADD init data in DTO !!
-      axios.get("http://localhost:8081/chart/load")
-        .then((response) => {
-          console.log(response)
-          if (response.data.errorCode === "TOKEN_REFRESH"){
-            console.log("TOKEN_REFRESH")
-            window.localStorage.setItem("Access-Token", response.data.errorMessage)
-            axios.get("http://localhost:8081/chart/load")
-            .then((response) => {
-              console.log("inner response")
-              console.log(response)
-              this.chartinfo = response.data
-              console.log(this.chartinfo)
-          })
-        }
-        else if(response.errorCode === "TOKEN_EXPIRED"){
-          window.localStorage.removeItem("Access-Token")
-          this.$router.push("/login")
-        }
+      const loadchart = (response) => {
         this.chartinfo = response.data
-      })
+      }
+
+      tokenAxios("/chart/load",loadchart,"get")
+
+      
+
+      // axios.get("http://localhost:8081/chart/load")
+      //   .then((response) => {
+      //     console.log(response)
+      //     if (response.data.errorCode === "TOKEN_REFRESH"){
+      //       console.log("TOKEN_REFRESH")
+      //       window.localStorage.setItem("Access-Token", response.data.errorMessage)
+      //       axios.get("http://localhost:8081/chart/load")
+      //       .then((response) => {
+      //         console.log("inner response")
+      //         console.log(response)
+      //         this.chartinfo = response.data
+      //         console.log(this.chartinfo)
+      //     })
+      //   }
+      //   else if(response.errorCode === "TOKEN_EXPIRED"){
+      //     window.localStorage.removeItem("Access-Token")
+      //     this.$router.push("/login")
+      //   }
+      //   this.chartinfo = response.data
+      // })
       return;
     }
   },
