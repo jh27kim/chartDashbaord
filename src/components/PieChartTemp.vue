@@ -40,6 +40,8 @@ export default {
     GetChartForm: function () {
       this.$router.push('/chartform');
     },
+
+    // TODO: Remove Interval & Change Endpoint URL 
     getChartData: function (){
           console.log("initial - "+this.chartData.datasets[0].data)
           console.log("initial - "+this.chartData.labels)
