@@ -1,5 +1,4 @@
 <template>
-
     <div>
         <Doughnut :chartData="chartData"></Doughnut>
     </div>
@@ -62,7 +61,7 @@ export default {
     },
   },
   mounted() {
-    // this.getChartData();
+    this.getChartData();
   }
 }
 </script>

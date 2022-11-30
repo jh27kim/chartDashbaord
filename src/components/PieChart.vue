@@ -1,7 +1,9 @@
 <template>
   <div v-for="chart in chartinfo" :key="chart">
+    <div width="200px">
     <PieChartTempVue :chartinfo="chart"></PieChartTempVue>
     <!-- {{ index }} {{ chart.chartId }} {{ chart.type }} {{ chart.chartdata }} {{ chart.period }} {{ chart.keyword }} {{ chart.enddate }} -->
+    </div>
   </div>
 
   <div>
